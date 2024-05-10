@@ -1,0 +1,50 @@
+.sidebar {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.new-chat {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  font-weight: var(--font-weight-bold);
+}
+
+.home {
+  padding: 5px 10px;
+  font-size: var(--font-size-md);
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  &__social {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    max-width: 400px;
+    gap: 20px;
+
+    a {
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    svg {
+      font-size: 30px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex: auto;
+
+  *:focus-visible {
+    outline: none;
+  }
+}
+
+.main {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+}
