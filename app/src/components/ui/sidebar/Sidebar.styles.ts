@@ -6,9 +6,8 @@ interface StyledSidebarProps {
 }
 
 export const StyledSidebar = styled.aside<StyledSidebarProps>`
-  font-size: 1rem;
   font-family: ${({ theme }) => theme.font.family.base};
-  font-weight: 500;
+  font-weight: ${(props) => props.theme.font.weight.medium};
   color: ${({ theme }) => theme.color.primary.main};
   height: 100%;
   width: fit-content;

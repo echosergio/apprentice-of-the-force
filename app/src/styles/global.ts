@@ -1,6 +1,55 @@
 import { createGlobalStyle } from 'styled-components';
 
+import CascadiaCode from '../assets/fonts/Cascadia Code/CascadiaMono-Regular.ttf';
+import SpaceGrotesk from '../assets/fonts/Space Grotesk/SpaceGrotesk-Medium.ttf';
+import DarkSide from '../assets/fonts/Star Wars/Dark Side.ttf';
+import StarJediHollow from '../assets/fonts/Star Wars/Star Jedi Hollow.ttf';
+import StarJedi from '../assets/fonts/Star Wars/Star Jedi.ttf';
+import TieWing from '../assets/fonts/Star Wars/Tie Wing.ttf';
+
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Cascadia Code';
+    src: url(${CascadiaCode}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    src: url(${SpaceGrotesk}) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Dark Side';
+    src: url(${DarkSide}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Star Jedi Hollow';
+    src: url(${StarJediHollow}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Star Jedi';
+    src: url(${StarJedi}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Tie Wing';
+    src: url(${TieWing}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
   :root {
     font-family: ${(props) => props.theme.font.family.base};
     font-size: ${(props) => props.theme.font.size.md};

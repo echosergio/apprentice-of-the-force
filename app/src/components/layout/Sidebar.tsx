@@ -1,130 +1,102 @@
-import classNames from 'classnames';
-import { FiSidebar } from 'react-icons/fi';
-import { IoLogoGithub, IoLogoGitlab, IoLogoLinkedin } from 'react-icons/io5';
-import { RiHomeLine } from 'react-icons/ri';
-import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from 'react';
 
-import { Chat, useChats } from '../../../state/chatStore';
-import { useTheme } from '../../context/ThemeContext';
+import { FaCode, FaGithub, FaRebel } from 'react-icons/fa6';
+import {
+  TbDeviceGamepad3,
+  TbLayoutSidebarLeftExpand,
+  TbSettings,
+  TbSourceCode,
+  TbUser,
+  TbUsersGroup,
+} from 'react-icons/tb';
+
 import { useWindowSize } from '../../hooks/useWindowSize';
-import ChatCard from '../../shared/chat-card/ChatCard';
-import { useSidebar, useSidebarActions } from '../../state/sidebarStore';
-import { BaseComponentProps } from '../../types/base-component.types';
-import { Button } from '../ui/button';
+import { AVATAR_STATUS, Avatar } from '../ui/avatar';
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
   SidebarFooter,
-  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarSubMenu,
   SidebarToggle,
 } from '../ui/sidebar';
-import { ThemeToggleButton } from '../ui/theme-toggle-button';
-import styles from './Sidebar.module.scss';
 
-function Sidebar({ className }: BaseComponentProps) {
+import { StyledSidebarHeader } from './Sidebar.styles';
+
+function Sidebar() {
   const windowSize = useWindowSize();
-  const navigate = useNavigate();
 
-  const chats = useChats();
+  const [toggled, setToggled] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
-  const { theme, setTheme } = useTheme();
-  const { toggled } = useSidebar();
-  const { setToggled } = useSidebarActions();
+  useEffect(() => {
+    setCollapsed(windowSize.width < 768);
+    setToggled(false);
+  }, [windowSize]);
 
   return (
     <>
       <SidebarComponent
-        className={classNames(styles['sidebar'], className)}
-        collapsed={windowSize.width < 992}
         toggled={toggled}
-        onToggle={setToggled}
+        collapsed={collapsed}
+        onToggle={() => {
+          setToggled(!toggled);
+        }}
       >
-        <SidebarHeader className={styles['sidebar-header']}>
-          <Button
-            className={styles['new-chat']}
-            variant="outline-primary"
-            onClick={() => {
-              navigate(`/chat/${uuidv4()}`);
-              setToggled(false);
-            }}
-          >
-            + New chat
-          </Button>
-          <Button
-            className={styles['home']}
-            variant="outline-primary"
-            onClick={() => {
-              navigate('/');
-              setToggled(false);
-            }}
-          >
-            <RiHomeLine />
-          </Button>
-        </SidebarHeader>
+        <StyledSidebarHeader>Apprentice of the Force</StyledSidebarHeader>
         <SidebarContent>
-          {chats.length > 0 &&
-            chats
-              .sort(function (a, b) {
-                return b.updatedAt.getTime() - a.updatedAt.getTime();
-              })
-              .map((chat: Chat) => (
-                <ChatCard
-                  key={chat.id}
-                  title={
-                    chat.messages.length > 0
-                      ? chat.messages[chat.messages.length - 1].text
-                      : ''
-                  }
-                  caption={chat.updatedAt.toLocaleTimeString()}
-                  onClick={() => {
-                    navigate(`/chat/${chat.id}`);
-                    setToggled(false);
-                  }}
-                />
-              ))}
+          <SidebarMenu>
+            <SidebarMenuItem icon={<FaRebel />} active>
+              Home
+            </SidebarMenuItem>
+            <SidebarMenuItem icon={<TbDeviceGamepad3 />}>Play</SidebarMenuItem>
+            <SidebarSubMenu title="Characters" icon={<TbUsersGroup />}>
+              <SidebarSubMenu title="Light Side" active>
+                <SidebarMenuItem>Chewbacca</SidebarMenuItem>
+                <SidebarMenuItem>Yoda</SidebarMenuItem>
+                <SidebarMenuItem>Luke Skywalker</SidebarMenuItem>
+                <SidebarMenuItem>Leia Organa</SidebarMenuItem>
+                <SidebarMenuItem>Obi-Wan Kenobi</SidebarMenuItem>
+                <SidebarMenuItem>Han Solo</SidebarMenuItem>
+                <SidebarMenuItem>Mace Windu</SidebarMenuItem>
+              </SidebarSubMenu>
+              <SidebarSubMenu title="Dark Side" active>
+                <SidebarMenuItem>Darth Vader</SidebarMenuItem>
+                <SidebarMenuItem>Darth Maul</SidebarMenuItem>
+                <SidebarMenuItem>Emperor Palpatine</SidebarMenuItem>
+                <SidebarMenuItem>Kylo Ren</SidebarMenuItem>
+                <SidebarMenuItem>Captain Phasma</SidebarMenuItem>
+                <SidebarMenuItem>Jabba the Hutt</SidebarMenuItem>
+                <SidebarMenuItem>Lando Calrissian</SidebarMenuItem>
+              </SidebarSubMenu>
+            </SidebarSubMenu>
+          </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
-          <div className={styles['options']}>
-            <div className={styles['options__social']}>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://github.com/echosergio"
-              >
-                <IoLogoGithub />
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://gitlab.com/echosergio"
-              >
-                <IoLogoGitlab />
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.linkedin.com/in/echosergio"
-              >
-                <IoLogoLinkedin />
-              </a>
-            </div>
-            <ThemeToggleButton
-              checked={theme === 'dark'}
-              onToggle={() => {
-                setTheme(theme === 'dark' ? 'light' : 'dark');
-              }}
-            />
-          </div>
+          <SidebarMenu>
+            <SidebarSubMenu title="Dev" icon={<FaCode />} variant="secondary">
+              <SidebarMenuItem icon={<FaGithub />}>GitHub</SidebarMenuItem>
+              <SidebarMenuItem icon={<TbSourceCode />}>Documentation</SidebarMenuItem>
+            </SidebarSubMenu>
+            <SidebarSubMenu
+              title="Stormtrooper"
+              icon={<Avatar status={AVATAR_STATUS.ONLINE} size="sm" />}
+              variant="secondary"
+            >
+              <SidebarMenuItem icon={<TbUser />}>Account</SidebarMenuItem>
+              <SidebarMenuItem icon={<TbSettings />}>Settings</SidebarMenuItem>
+            </SidebarSubMenu>
+          </SidebarMenu>
         </SidebarFooter>
       </SidebarComponent>
-      {windowSize.width < 992 && (
+      {collapsed && (
         <SidebarToggle
           onClick={() => {
             setToggled(!toggled);
           }}
         >
-          <FiSidebar />
+          <TbLayoutSidebarLeftExpand />
         </SidebarToggle>
       )}
     </>

@@ -16,7 +16,6 @@ import {
 } from '.';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { AVATAR_STATUS, Avatar } from '../avatar';
-import { SidebarLogo } from './components/layout/Logo';
 
 const meta: Meta<typeof Sidebar> = {
   title: 'Components/Sidebar',
@@ -49,9 +48,7 @@ const meta: Meta<typeof Sidebar> = {
             setToggled(!toggled);
           }}
         >
-          <SidebarHeader>
-            <SidebarLogo />
-          </SidebarHeader>
+          <StyledSidebarHeader>Apprentice of the Force</StyledSidebarHeader>
           <SidebarContent>
             <SidebarMenu>
               <SidebarMenuItem>No icon</SidebarMenuItem>
@@ -131,4 +128,15 @@ const StyledStory = styled.div`
   height: 100%;
   display: flex;
   gap: 10px;
+`;
+
+const StyledSidebarHeader = styled(SidebarHeader)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 20px 20px 20px;
+  font-size: ${(props) => props.theme.font.size.xxl};
+  text-align: center;
+  font-family: ${({ theme }) => theme.font.family.accent};
+  text-shadow: #fc0 1px 0 10px;
 `;

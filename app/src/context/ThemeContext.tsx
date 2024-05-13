@@ -1,12 +1,4 @@
-import {
-  Dispatch,
-  PropsWithChildren,
-  SetStateAction,
-  createContext,
-  useContext,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useState } from 'react';
 
 import { Theme, darkTheme, lightTheme } from '../styles/theme';
 
@@ -25,6 +17,7 @@ export type ThemeProps = {
 
 export const ThemeContext = createContext({
   scheme: 'dark',
+  theme: darkTheme,
 } as ThemeProps);
 
 export const ThemeContextProvider = ({ children }: PropsWithChildren): JSX.Element => {
@@ -39,16 +32,6 @@ export const ThemeContextProvider = ({ children }: PropsWithChildren): JSX.Eleme
   }
 
   const [scheme, setScheme] = useState<ColorScheme>(getColorScheme());
-
-  useLayoutEffect(() => {
-    if (scheme === 'dark') {
-      document.documentElement.classList.remove('light');
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
-    }
-  }, [scheme]);
 
   return <ThemeContext.Provider value={{ scheme, theme: THEMES[scheme], setScheme }}>{children}</ThemeContext.Provider>;
 };

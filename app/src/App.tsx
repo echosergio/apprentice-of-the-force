@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import Layout from './components/layout/Layout';
@@ -7,15 +8,17 @@ import HomePage from './pages/HomePage';
 import GlobalStyle from './styles/global';
 
 function App() {
-  const { theme, scheme, setScheme } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </BrowserRouter>
       </Layout>
     </ThemeProvider>
   );

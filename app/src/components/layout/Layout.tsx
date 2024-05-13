@@ -1,20 +1,15 @@
-import classNames from 'classnames';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
-import { BaseComponentProps } from '../../types/base-component.types';
-import styles from './Layout.module.scss';
 import Sidebar from './Sidebar';
 
-type ContainerProps = BaseComponentProps & {
-  children: ReactNode;
-};
+import { StyledLayout, StyledMain } from './Layout.styles';
 
-function Layout({ className, children }: ContainerProps) {
+function Layout({ children }: PropsWithChildren) {
   return (
-    <div className={classNames(styles['wrapper'], className)}>
+    <StyledLayout>
       <Sidebar />
-      <main className={styles['main']}>{children}</main>
-    </div>
+      <StyledMain>{children}</StyledMain>
+    </StyledLayout>
   );
 }
 

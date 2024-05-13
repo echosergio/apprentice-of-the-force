@@ -1,4 +1,6 @@
-.wrapper {
+import { styled } from 'styled-components';
+
+export const StyledLayout = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -7,12 +9,12 @@
   *:focus-visible {
     outline: none;
   }
-}
+`;
 
-.main {
+export const StyledMain = styled.main`
   flex: auto;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   position: relative;
-}
+`;

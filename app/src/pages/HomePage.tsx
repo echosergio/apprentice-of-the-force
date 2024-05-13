@@ -1,13 +1,7 @@
-import Page from '../components/shared/page/Page';
-import Home from '../containers/home/Home';
-import styles from './HomePage.module.scss';
+import { StyledHome } from './HomePage.styles';
 
 function HomePage() {
-  return (
-    <Page>
-      <Home className={styles.home} />
-    </Page>
-  );
+  return <StyledHome />;
 }
 
 export default HomePage;

@@ -8,7 +8,6 @@ import { SidebarProps } from './Sidebar.types';
 import { SidebarContent } from './components/layout/Content';
 import { SidebarFooter } from './components/layout/Footer';
 import { SidebarHeader } from './components/layout/Header';
-import { SidebarLogo } from './components/layout/Logo';
 import { SidebarMenu } from './components/menu/Menu';
 import { SidebarMenuItem } from './components/menu/MenuItem';
 import { SidebarSubMenu } from './components/menu/SubMenu';
@@ -16,9 +15,7 @@ import { SidebarSubMenu } from './components/menu/SubMenu';
 const renderComponent = (props: Partial<SidebarProps> = {}) =>
   render(
     <Sidebar {...props}>
-      <SidebarHeader>
-        <SidebarLogo />
-      </SidebarHeader>
+      <SidebarHeader>Logo</SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem icon={<FaRegCircleUser />}>OpenAI</SidebarMenuItem>

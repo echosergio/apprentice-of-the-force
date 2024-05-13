@@ -45,8 +45,10 @@ export interface Theme {
   font: {
     family: {
       base: string;
-      heading: string;
+      accent: string;
       monospace: string;
+      lightSide: string;
+      darkSide: string;
     };
     size: {
       xxs: string;
@@ -117,10 +119,11 @@ export const lightTheme: Theme = {
   },
   font: {
     family: {
-      base: "'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
-      heading:
-        "'Gabarito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
-      monospace: "'Cascadia Code', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      base: 'Space Grotesk',
+      accent: 'Star Jedi Hollow',
+      monospace: 'Cascadia Code',
+      lightSide: 'Tie Wing',
+      darkSide: 'Dark Side',
     },
     size: {
       xxs: '10px',
@@ -191,10 +194,11 @@ export const darkTheme: Theme = {
   },
   font: {
     family: {
-      base: "'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
-      heading:
-        "'Gabarito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
-      monospace: "'Cascadia Code', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      base: 'Space Grotesk',
+      accent: 'Star Jedi Hollow',
+      monospace: 'Cascadia Code',
+      lightSide: 'Tie Wing',
+      darkSide: 'Dark Side',
     },
     size: {
       xxs: '10px',

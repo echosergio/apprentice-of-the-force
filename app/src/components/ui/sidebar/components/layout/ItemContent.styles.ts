@@ -50,8 +50,8 @@ export const StyledSufixWrapper = styled.span`
 
 export const StyledItemContent = styled.span<StyledItemContentProps>`
   display: flex;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: ${(props) => props.theme.font.size.md};
+  font-weight: ${(props) => props.theme.font.weight.medium};
 
   ${({ $firstchild }) =>
     $firstchild &&
