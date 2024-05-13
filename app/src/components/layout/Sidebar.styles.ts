@@ -9,11 +9,18 @@ export const StyledSidebar = styled.div`
 
 export const StyledSidebarHeader = styled(SidebarHeader)`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 30px 20px 20px 20px;
   font-size: ${(props) => props.theme.font.size.xxl};
   text-align: center;
   font-family: ${({ theme }) => theme.font.family.accent};
-  text-shadow: #fc0 1px 0 10px;
+  text-shadow: ${({ theme }) => theme.color.secondary.light} 1px 0 5px;
+  color: ${({ theme }) => theme.color.secondary.light};
+`;
+
+export const StyledSidebarLogo = styled.img`
+  width: 80px;
+  height: 80px;
 `;

@@ -36,4 +36,12 @@ export const ThemeContextProvider = ({ children }: PropsWithChildren): JSX.Eleme
   return <ThemeContext.Provider value={{ scheme, theme: THEMES[scheme], setScheme }}>{children}</ThemeContext.Provider>;
 };
 
-export const useTheme = () => useContext<ThemeProps>(ThemeContext);
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeContextProvider');
+  }
+
+  return context;
+};

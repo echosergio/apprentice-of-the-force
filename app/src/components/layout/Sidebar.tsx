@@ -10,6 +10,7 @@ import {
   TbUsersGroup,
 } from 'react-icons/tb';
 
+import Stormtrooper from '../../assets/images/stormtrooper.svg';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { AVATAR_STATUS, Avatar } from '../ui/avatar';
 import {
@@ -22,7 +23,7 @@ import {
   SidebarToggle,
 } from '../ui/sidebar';
 
-import { StyledSidebarHeader } from './Sidebar.styles';
+import { StyledSidebarHeader, StyledSidebarLogo } from './Sidebar.styles';
 
 function Sidebar() {
   const windowSize = useWindowSize();
@@ -44,7 +45,9 @@ function Sidebar() {
           setToggled(!toggled);
         }}
       >
-        <StyledSidebarHeader>Apprentice of the Force</StyledSidebarHeader>
+        <StyledSidebarHeader>
+          <StyledSidebarLogo alt="logo" src={Stormtrooper} />
+        </StyledSidebarHeader>
         <SidebarContent>
           <SidebarMenu>
             <SidebarMenuItem icon={<FaRebel />} active>
