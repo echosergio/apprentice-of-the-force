@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { FaCode, FaGithub, FaRebel } from 'react-icons/fa6';
 import {
@@ -11,7 +11,6 @@ import {
 } from 'react-icons/tb';
 
 import Stormtrooper from '../../assets/images/stormtrooper.svg';
-import { useWindowSize } from '../../hooks/useWindowSize';
 import { AVATAR_STATUS, Avatar } from '../ui/avatar';
 import {
   Sidebar as SidebarComponent,
@@ -26,15 +25,8 @@ import {
 import { StyledSidebarHeader, StyledSidebarLogo } from './Sidebar.styles';
 
 function Sidebar() {
-  const windowSize = useWindowSize();
-
   const [toggled, setToggled] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
-
-  useEffect(() => {
-    setCollapsed(windowSize.width < 768);
-    setToggled(false);
-  }, [windowSize]);
+  const [collapsed] = useState(true);
 
   return (
     <>

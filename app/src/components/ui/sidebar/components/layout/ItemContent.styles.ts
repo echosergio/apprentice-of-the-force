@@ -53,6 +53,10 @@ export const StyledItemContent = styled.span<StyledItemContentProps>`
   font-size: ${(props) => props.theme.font.size.md};
   font-weight: ${(props) => props.theme.font.weight.medium};
 
+  &:hover {
+    text-shadow: ${({ theme }) => theme.color.primary.main} 0px 0 18px;
+  }
+
   ${({ $firstchild }) =>
     $firstchild &&
     `

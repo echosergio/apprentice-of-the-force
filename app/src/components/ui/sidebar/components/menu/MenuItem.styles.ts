@@ -17,10 +17,6 @@ export const StyledItem = styled.div<StyledMenuItemProps>`
   align-items: center;
   cursor: pointer;
 
-  &:hover {
-    color: ${({ theme }) => theme.color.secondary.main};
-  }
-
   ${({ $firstchild }) =>
     $firstchild
       ? `

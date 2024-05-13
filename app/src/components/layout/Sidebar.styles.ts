@@ -12,7 +12,7 @@ export const StyledSidebarHeader = styled(SidebarHeader)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 30px 20px 20px 20px;
+  margin: 40px 20px 20px 20px;
   font-size: ${(props) => props.theme.font.size.xxl};
   text-align: center;
   font-family: ${({ theme }) => theme.font.family.accent};

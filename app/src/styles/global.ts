@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Space Grotesk';
     src: url(${SpaceGrotesk}) format('truetype');
-    font-weight: 500;
+    font-weight: 400;
     font-style: normal;
   }
 

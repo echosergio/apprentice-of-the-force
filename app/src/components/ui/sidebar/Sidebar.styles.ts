@@ -83,6 +83,7 @@ export const StyledOverlay = styled.div<StyledSidebarProps>`
   bottom: 0;
   left: 0;
   display: none;
+  background: rgba(0, 0, 0, 0.5);
 
   ${({ $toggled }) =>
     $toggled &&

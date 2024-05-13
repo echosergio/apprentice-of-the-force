@@ -1,15 +1,26 @@
+import SelectSide from '../assets/images/select-side.png';
 import { useTheme } from '../context/ThemeContext';
 
-import { StyledHome } from './HomePage.styles';
+import {
+  StyledButtons,
+  StyledDarkSide,
+  StyledHome,
+  StyledLightSide,
+  StyledMainImage,
+  StyledTitle,
+} from './HomePage.styles';
 
 function HomePage() {
-  const { scheme, setScheme } = useTheme();
+  const { setScheme } = useTheme();
 
   return (
     <StyledHome>
-      <h1>Home Page</h1>
-      <p>Current theme: {scheme}</p>
-      <button onClick={() => setScheme(scheme === 'light' ? 'dark' : 'light')}>Toggle Theme</button>
+      <StyledTitle>Choose your side</StyledTitle>
+      <StyledMainImage src={SelectSide} alt="placeholder" />
+      <StyledButtons>
+        <StyledDarkSide onClick={() => setScheme('dark')}>Dark Side</StyledDarkSide>
+        <StyledLightSide onClick={() => setScheme('light')}>Light Side</StyledLightSide>
+      </StyledButtons>
     </StyledHome>
   );
 }
