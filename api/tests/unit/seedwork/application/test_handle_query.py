@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Callable, Coroutine, Any
+from collections.abc import Callable, Coroutine
+from typing import Any
 
 import pytest
 
@@ -17,7 +18,7 @@ async def get_batch(query: GetQuery) -> Result:
     return Result(payload=query.message)
 
 
-QUERY_HANDLERS: dict[type[Query], Callable[[...], Coroutine[Any, Any, Result]]] = {
+QUERY_HANDLERS: dict[type[Query], Callable[..., Coroutine[Any, Any, Result]]] = {
     GetQuery: get_batch,
 }
 

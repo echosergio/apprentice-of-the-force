@@ -1,4 +1,5 @@
-from typing import Callable, Coroutine, Any
+from collections.abc import Callable, Coroutine
+from typing import Any
 
 from src.seedwork.application.commands import Command
 from src.seedwork.application.queries import Query
@@ -14,9 +15,9 @@ class MessageBus:
 
     def __init__(
         self,
-        event_handlers: dict[type[DomainEvent], list[Callable[[...], Coroutine[Any, Any, Result]]]],
-        query_handlers: dict[type[Query], Callable[[...], Coroutine[Any, Any, Result]]],
-        command_handlers: dict[type[Command], Callable[[...], Coroutine[Any, Any, Result]]],
+        event_handlers: dict[type[DomainEvent], list[Callable[..., Coroutine[Any, Any, None]]]],
+        query_handlers: dict[type[Query], Callable[..., Coroutine[Any, Any, Result]]],
+        command_handlers: dict[type[Command], Callable[..., Coroutine[Any, Any, Result]]],
     ):
         self.event_handlers = event_handlers
         self.query_handlers = query_handlers
@@ -24,20 +25,13 @@ class MessageBus:
 
     async def handle(self, message: Message) -> Result:
         if isinstance(message, DomainEvent):
-            self.queue.append(message)
-            result = Result()
+            await self.handle_event(message)
         elif isinstance(message, Query):
             return await self.handle_query(message)
         elif isinstance(message, Command):
-            result = await self.handle_command(message)
+            return await self.handle_command(message)
         else:
             raise Exception(f"{message} was not a DomainEvent, Query or Command")
-
-        while self.queue:
-            message = self.queue.pop(0)
-            await self.handle_event(message)
-
-        return result
 
     async def handle_event(self, event: DomainEvent) -> None:
         for handler in self.event_handlers[type(event)]:

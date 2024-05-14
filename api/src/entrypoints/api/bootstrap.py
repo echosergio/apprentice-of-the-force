@@ -1,5 +1,6 @@
 import inspect
-from typing import Callable, Coroutine, Any
+from collections.abc import Callable, Coroutine
+from typing import Any
 
 
 from src.application.commands.command_handlers import COMMAND_HANDLERS

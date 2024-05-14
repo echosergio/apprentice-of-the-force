@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Callable, Coroutine, Any
+from collections.abc import Callable, Coroutine
+from typing import Any
 
 import pytest
 
@@ -17,7 +18,7 @@ async def create_batch(command: CreateCommand) -> Result:
     return Result(payload=command.message)
 
 
-COMMAND_HANDLERS: dict[type[Command], Callable[[...], Coroutine[Any, Any, Result]]] = {
+COMMAND_HANDLERS: dict[type[Command], Callable[..., Coroutine[Any, Any, Result]]] = {
     CreateCommand: create_batch,
 }
 

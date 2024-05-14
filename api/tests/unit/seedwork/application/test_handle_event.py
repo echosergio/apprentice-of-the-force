@@ -1,10 +1,10 @@
 from dataclasses import dataclass
-from typing import Callable, Coroutine, Any
+from collections.abc import Callable, Coroutine
+from typing import Any
 
 import pytest
 
 from src.seedwork.application.message_bus import MessageBus
-from src.seedwork.application.results import Result
 from src.seedwork.domain.events import DomainEvent
 from src.seedwork.domain.exceptions import DomainError, ReasonCode
 
@@ -14,15 +14,15 @@ class CreatedDomainEvent(DomainEvent):
     message = "I am CreatedDomainEvent"
 
 
-async def batch_created(event: CreatedDomainEvent) -> Result:
-    return Result(payload=event.message)
+async def batch_created(event: CreatedDomainEvent) -> None:
+    ...
 
 
-async def batch_created_2(event: CreatedDomainEvent) -> Result:
-    return Result(payload=event.message)
+async def batch_created_2(event: CreatedDomainEvent) -> None:
+    ...
 
 
-EVENT_HANDLERS: dict[type[DomainEvent], list[Callable[[...], Coroutine[Any, Any, Result]]]] = {
+EVENT_HANDLERS: dict[type[DomainEvent], list[Callable[..., Coroutine[Any, Any, None]]]] = {
     CreatedDomainEvent: [batch_created, batch_created_2],
 }
 
@@ -42,15 +42,12 @@ async def test_handle_event():
 
 @pytest.mark.asyncio
 async def test_handle_event_raises_exception():
-    async def batch_created_1(event: CreatedDomainEvent) -> Result:
-        return Result(payload=event.message)
-
-    async def batch_created_1_2(event: CreatedDomainEvent) -> Result:
+    async def batch_created_1_2(event: CreatedDomainEvent) -> None:
         raise DomainError("I am BatchCreated exception", "reason_code", ReasonCode.invalid_operation)
 
     message_bus = MessageBus(
         event_handlers= {
-            CreatedDomainEvent: [batch_created_1, batch_created_1_2]
+            CreatedDomainEvent: [batch_created, batch_created_1_2]
         },
         query_handlers={},
         command_handlers={},
