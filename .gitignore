@@ -1,0 +1,68 @@
+# Editor-specific files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.suo
+*.ntvs*
+*.njsproj
+*.sw?
+*.swp
+*.swm
+*.swo
+*.subl
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Archives and compressed files
+*.zip
+*.rar
+*.gz
+*.tar
+*.7z
+*.tgz
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.swm
+*.bak
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Miscellaneous
+.DS_Store?
+ehthumbs.db?
+Thumbs.db?
+*.pem
+
+._*
